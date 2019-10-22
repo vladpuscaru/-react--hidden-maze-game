@@ -25,16 +25,15 @@ class Board extends React.Component {
     let lives = this.state.lives;
     let status = this.state.status;
 
-    if (!blueprint[i][j].revealed && lives > 0) {
+    if (!blueprint[i][j].revealed && !gameFinished(blueprint, lives).finished) {
 
       if (blueprint[i][j].value === 'x') {
         lives--;
       }
+        blueprint[i][j].revealed = true;
 
       if (gameFinished(blueprint, lives).finished) {
         status = 'Game finished! You ' + gameFinished(blueprint, lives).reason + '!';
-      } else {
-        blueprint[i][j].revealed = true;
       }
 
       this.setState({
@@ -167,13 +166,13 @@ class Game extends React.Component {
         <p className="game__info__title">Click on the cells and find the path to the end.</p>
         <ul className="game__info__legend">
           <li>
-             - you're on track! continue <strong>right</strong>
+            white cell - you're on track! move onwards
           </li>
           <li>
-             - you're on track! continue <strong>left</strong>
+            red cell - you've hit a wall!
           </li>
           <li>
-             - you're on track! continue <strong>up</strong>
+            green cell - you've reached the end! Congrats!
           </li>
         </ul>
       </div>
