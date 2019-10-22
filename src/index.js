@@ -16,19 +16,34 @@ class Board extends React.Component {
     this.state = {
       blueprint: getMap(),
       lives: 3,
+      status: 'Game in progress...',
     };
   }
 
   onClickHandler(i, j) {
     let blueprint = Array.from(this.state.blueprint);
-    // if !gameFinished(blueprint) && lives > 0 ..
-    if (!blueprint[i][j].revealed) {
-      blueprint[i][j].revealed = true;
-    }
+    let lives = this.state.lives;
+    let status = this.state.status;
 
-    this.setState({
-      blueprint: blueprint,
-    });
+    if (!blueprint[i][j].revealed && lives > 0) {
+
+      if (blueprint[i][j].value === 'x') {
+        lives--;
+      }
+
+      if (gameFinished(blueprint, lives).finished) {
+        status = 'Game finished! You ' + gameFinished(blueprint, lives).reason + '!';
+      } else {
+        blueprint[i][j].revealed = true;
+      }
+
+      this.setState({
+        blueprint: blueprint,
+        lives: lives,
+        status: status,
+      });
+
+    }
   }
 
   renderCell(i, j, value, revelead) {
@@ -46,6 +61,10 @@ class Board extends React.Component {
   render() {
     return (
       <div className="game__board divider-bottom">
+        <div className="game__board__status">
+          <span>{'Lives: ' + this.state.lives}</span>
+          <span>{this.state.status}</span>  
+        </div>
         <div className="game__board__row">
           {this.renderCell(0, 0, this.state.blueprint[0][0].value, this.state.blueprint[0][0].revealed)}
           {this.renderCell(0, 1, this.state.blueprint[0][1].value, this.state.blueprint[0][1].revealed)}
@@ -184,4 +203,16 @@ function getMap() {
     [{value: 'x', revealed: false}, {value: 'x', revealed: false}, {value: 'x', revealed: false}, {value: 'x', revealed: false}, {value: 'x', revealed: false}, {value: 'x', revealed: false}, {value: 'x', revealed: false}, {value: 'x', revealed: false}]
   ];
   return blueprint;
+}
+
+function gameFinished(blueprint, lives) {
+  if (lives <= 0) {
+    return {finished: true, reason: 'lose'};
+  }
+
+  if (blueprint[0][6].revealed) {
+    return {finished: true, reason: 'win'};
+  }
+
+  return {finished: false, reason: 'Game in progress...'};
 }

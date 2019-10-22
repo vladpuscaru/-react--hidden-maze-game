@@ -32,6 +32,13 @@
   max-width: 640px;
 }
 
+.game__board__status {
+  margin-bottom: 5px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
 .game__board__row {
   flex: 1;
   display: flex;
