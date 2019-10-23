@@ -154,7 +154,7 @@ class Game extends React.Component {
     return (
       <div className="game">
       <div className="game__title divider-bottom">
-        <h3>The hidden maze game</h3>
+        <h3>The hidden maze</h3>
         <p>Find your way through the maze and reach the end!</p>
       </div>
 
@@ -166,13 +166,19 @@ class Game extends React.Component {
         <p className="game__info__title">Click on the cells and find the path to the end.</p>
         <ul className="game__info__legend">
           <li>
-            white cell - you're on track! move onwards
+            <pre>
+            <span className="legend__cell legend__cell--white"></span> white cell - you're on track! move onwards
+            </pre>
           </li>
           <li>
-            red cell - you've hit a wall!
+            <pre>
+            <span className="legend__cell legend__cell--red"></span> red cell   - you've hit a wall!
+            </pre>
           </li>
           <li>
-            green cell - you've reached the end! Congrats!
+            <pre>
+            <span className="legend__cell legend__cell--green"></span> green cell - you've reached the end! Congrats!
+            </pre>
           </li>
         </ul>
       </div>

@@ -94,3 +94,26 @@
 .O:after {
   background-color: #fff;
 }
+
+.legend__cell {
+  display: inline-block;
+  padding: 5px;
+  background-color: red;
+  position: relative;
+  top: 2px;
+}
+
+.legend__cell--white {
+  background-color: #fff;
+  border: 1px solid #000;
+}
+
+.legend__cell--red {
+  background-color: #700206;
+  border: 1px solid #700206;
+}
+
+.legend__cell--green {
+  background-color: #059e1e;
+  border: 1px solid #059e1e;
+}

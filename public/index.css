@@ -33,3 +33,10 @@ body {
   font-size: 11px;
 }
 
+#socials {
+  margin-bottom: 25px;
+}
+
+#socials svg {
+  fill: #fff;
+}
