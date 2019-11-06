@@ -23,3 +23,5 @@ TODO:
   - feature to restart the game when it's finished
   - better UI which announces you what's happened (win or lose)
   - host it on github
+
+![hidden_maze](https://user-images.githubusercontent.com/28822224/68336243-b1948480-00e6-11ea-990e-a3124f98008a.PNG)
